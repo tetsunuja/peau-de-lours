@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'ombre 10 — Eyewear, Sapporo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:    #0C0C0C;
+  --surf:  #141414;
+  --ink:   #d4d0c8;
+  --dim:   #5a5650;
+  --line:  #1f1e1b;
+  --acc:   #c8b07a;
+  --white: #f0ece4;
+}
+html { scroll-behavior: smooth; }
+body { background:var(--bg); color:var(--ink); font-family:'Instrument Serif','Noto Sans JP',serif; font-size:16px; line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+::-webkit-scrollbar { width:0; }
+img { display:block; } a { color:inherit; text-decoration:none; }
+
+/* NAV — MINIMAL */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:1.2rem 2.5rem; display:flex; align-items:center; justify-content:space-between; transition:background 0.3s; }
+nav.scrolled { background:rgba(12,12,12,0.95); backdrop-filter:blur(10px); }
+.nav-logo { display:flex; align-items:center; gap:0.6rem; }
+.nav-dot { width:24px; height:24px; background:var(--ink); border-radius:50%; }
+.nav-name { font-size:0.78rem; font-style:italic; letter-spacing:0.12em; color:var(--ink); }
+.nav-links { display:flex; gap:2rem; }
+.nav-links a { font-family:'Noto Sans JP',sans-serif; font-size:0.5rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--dim); transition:color 0.2s; }
+.nav-links a:hover { color:var(--ink); }
+
+/* HERO — FULL BLEED, SINGLE IMAGE */
+.hero { height:100vh; position:relative; overflow:hidden; display:flex; align-items:flex-end; }
+.hero-bg { position:absolute; inset:0; }
+.hero-bg img { width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.2) brightness(0.5); }
+.hero-content { position:relative; z-index:1; padding:0 2.5rem 5rem; width:100%; }
+.hero-h1 { font-size:clamp(3rem,7vw,6.5rem); font-weight:400; font-style:italic; line-height:1.05; color:var(--white); letter-spacing:-0.02em; opacity:0; animation:fadeIn 1.2s 0.3s forwards; }
+.hero-sub { margin-top:1rem; font-family:'Noto Sans JP',sans-serif; font-size:0.56rem; letter-spacing:0.4em; color:var(--dim); opacity:0; animation:fadeIn 0.8s 0.8s forwards; }
+.hero-line { margin-top:2.5rem; width:40px; height:1px; background:var(--dim); opacity:0; animation:fadeIn 0.6s 1.2s forwards; }
+
+/* STATEMENT — BIG TYPE */
+.statement { padding:8rem 2.5rem; max-width:1100px; margin:0 auto; }
+.statement-text { font-size:clamp(1.4rem,2.8vw,2.4rem); font-weight:400; font-style:italic; line-height:1.8; }
+.statement-text span { color:var(--acc); }
+.statement-sub { font-family:'Noto Sans JP',sans-serif; font-size:0.66rem; font-weight:300; line-height:2.5; color:var(--dim); margin-top:2rem; max-width:40ch; }
+
+/* SPLIT — IMAGE + TEXT */
+.split { display:grid; grid-template-columns:1fr 1fr; min-height:80vh; }
+.split-img { overflow:hidden; }
+.split-img img { width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.15) brightness(0.6); transition:filter 1.2s ease; }
+.split:hover .split-img img { filter:grayscale(0.5) contrast(1.05) brightness(0.7); }
+.split-content { display:flex; flex-direction:column; justify-content:center; padding:5rem 4rem; background:var(--surf); }
+.split-eyebrow { font-family:'Noto Sans JP',sans-serif; font-size:0.46rem; letter-spacing:0.6em; text-transform:uppercase; color:var(--dim); margin-bottom:2rem; }
+.split-brand { font-size:clamp(1.2rem,2vw,1.8rem); font-weight:400; font-style:italic; letter-spacing:0.05em; margin-bottom:0.3rem; }
+.split-origin { font-family:'Noto Sans JP',sans-serif; font-size:0.52rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--acc); margin-bottom:1.5rem; }
+.split-desc { font-family:'Noto Sans JP',sans-serif; font-size:0.66rem; font-weight:300; line-height:2.4; color:var(--dim); }
+.split.reverse { direction:rtl; }
+.split.reverse > * { direction:ltr; }
+
+/* COLLECTION — HORIZONTAL SCROLL */
+.collection { padding:6rem 0; border-top:1px solid var(--line); }
+.col-header { padding:0 2.5rem; margin-bottom:2.5rem; font-family:'Noto Sans JP',sans-serif; font-size:0.46rem; letter-spacing:0.6em; text-transform:uppercase; color:var(--dim); }
+.col-track { display:flex; gap:2px; overflow-x:auto; padding:0 2.5rem; scroll-snap-type:x mandatory; -ms-overflow-style:none; scrollbar-width:none; }
+.col-track::-webkit-scrollbar { display:none; }
+.col-card { flex-shrink:0; width:300px; scroll-snap-align:start; position:relative; overflow:hidden; }
+.col-card img { width:100%; aspect-ratio:3/4; object-fit:cover; filter:grayscale(1) contrast(1.1) brightness(0.7); transition:filter 0.6s,transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+.col-card:hover img { filter:grayscale(0.3) contrast(1) brightness(0.8); transform:scale(1.03); }
+.col-info { position:absolute; bottom:0; left:0; right:0; padding:1.2rem; background:linear-gradient(to top,rgba(12,12,12,0.9) 0%,transparent 100%); }
+.col-brand { font-family:'Noto Sans JP',sans-serif; font-size:0.42rem; letter-spacing:0.5em; text-transform:uppercase; color:var(--acc); }
+.col-name { font-size:0.82rem; font-style:italic; margin-top:0.15rem; }
+.col-model { font-family:'Noto Sans JP',sans-serif; font-size:0.48rem; color:var(--dim); margin-top:0.2rem; letter-spacing:0.1em; }
+.col-hint { padding:0 2.5rem; margin-top:1rem; font-family:'Noto Sans JP',sans-serif; font-size:0.48rem; color:var(--dim); letter-spacing:0.15em; }
+
+/* SERVICES — MINIMAL */
+.services { padding:6rem 2.5rem; border-top:1px solid var(--line); }
+.services-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); }
+.srv { background:var(--bg); padding:2.5rem; transition:background 0.3s; }
+.srv:hover { background:var(--surf); }
+.srv h4 { font-size:1rem; font-weight:400; font-style:italic; margin-bottom:0.6rem; }
+.srv p { font-family:'Noto Sans JP',sans-serif; font-size:0.62rem; font-weight:300; line-height:2.2; color:var(--dim); }
+
+/* SISTER */
+.sister { padding:3.5rem 2.5rem; border-top:1px solid var(--line); }
+.sister-inner { max-width:900px; margin:0 auto; }
+.sister-text { font-family:'Noto Sans JP',sans-serif; font-size:0.62rem; font-weight:300; color:var(--dim); line-height:1.8; }
+.sister-text strong { font-family:'Instrument Serif',serif; font-weight:400; font-style:italic; color:var(--ink); font-size:0.88rem; }
+.sister-text a { border-bottom:1px solid var(--line); }
+
+/* VISIT */
+.visit { padding:6rem 2.5rem; max-width:1000px; margin:0 auto; }
+.visit-title { font-family:'Noto Sans JP',sans-serif; font-size:0.46rem; letter-spacing:0.6em; text-transform:uppercase; color:var(--dim); margin-bottom:2rem; }
+.vi { display:flex; padding:0.6rem 0; border-bottom:1px solid var(--line); }
+.vi-l { width:5rem; flex-shrink:0; font-family:'Noto Sans JP',sans-serif; font-size:0.48rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--dim); padding-top:0.1rem; }
+.vi-v { font-family:'Noto Sans JP',sans-serif; font-size:0.66rem; font-weight:300; line-height:1.8; }
+.vi-v a { border-bottom:1px solid var(--line); }
+
+/* FOOTER */
+footer { border-top:1px solid var(--line); padding:2.5rem; display:flex; justify-content:space-between; align-items:center; }
+.footer-brand { display:flex; align-items:center; gap:0.6rem; }
+.footer-dot { width:28px; height:28px; background:var(--ink); border-radius:50%; }
+.footer-nm { font-style:italic; font-size:0.82rem; color:rgba(212,208,200,0.4); letter-spacing:0.08em; }
+.footer-right { font-family:'Noto Sans JP',sans-serif; font-size:0.44rem; letter-spacing:0.2em; color:var(--dim); }
+
+/* ANIM */
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity:0; transform:translateY(20px); transition:opacity 0.8s ease,transform 0.8s ease; }
+.reveal.in { opacity:1; transform:none; }
+
+/* MOBILE */
+@media (max-width:960px) {
+  nav { padding:1rem 1.2rem; }
+  .nav-links { display:none; }
+  .hero-h1 { font-size:clamp(2.2rem,10vw,3.5rem); }
+  .statement { padding:5rem 1.2rem; }
+  .split { grid-template-columns:1fr; }
+  .split-img { height:50vh; }
+  .split-content { padding:3rem 1.5rem; }
+  .split.reverse { direction:ltr; }
+  .col-card { width:260px; }
+  .services-inner { grid-template-columns:1fr; }
+  .visit { padding:4rem 1.2rem; }
+  footer { flex-direction:column; gap:1rem; padding:2rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-dot"></div>
+    <span class="nav-name">L'ombre 10</span>
+  </a>
+  <div class="nav-links">
+    <a href="#brands">Brands</a>
+    <a href="#collection">Collection</a>
+    <a href="#visit">Visit</a>
+    <a href="https://www.instagram.com/lombre10_sapporo/" target="_blank">Instagram</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1800&q=80&fit=crop" alt="" loading="eager">
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-h1">L'ombre 10</h1>
+    <p class="hero-sub">Eyewear Select — Sapporo</p>
+    <div class="hero-line"></div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <p class="statement-text reveal">
+    眼鏡には時代に左右されない<br>
+    いくつかの定番がある。<br>
+    その中に、<span>それぞれのブランドの<br>
+    哲学が見える。</span>
+  </p>
+  <p class="statement-sub reveal" style="transition-delay:.1s">
+    掛ける人のパーソナリティに静かに寄り添う。<br>
+    サングラス、伊達、度付き。<br>
+    本当に良いと感じたフレームだけを、ここに。
+  </p>
+</section>
+
+<!-- BRAND 1 — YUICHI TOYAMA -->
+<section class="split" id="brands">
+  <div class="split-img">
+    <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200&q=80&fit=crop" alt="">
+  </div>
+  <div class="split-content">
+    <p class="split-eyebrow reveal">Brand</p>
+    <h2 class="split-brand reveal" style="transition-delay:.05s">YUICHI TOYAMA.</h2>
+    <p class="split-origin reveal" style="transition-delay:.1s">Japan</p>
+    <p class="split-desc reveal" style="transition-delay:.15s">
+      現代アートの彫刻からインスパイアされたデザイン。<br>
+      グラマラスでフェミニンな60'sを彷彿させる<br>
+      ビッグシェイプのフロント。<br><br>
+      掛けた時に感じられる、ゆったりとした抜け感が<br>
+      時代感に上手く溶け込むモデル。<br>
+      ジェンダーレスな一本。
+    </p>
+  </div>
+</section>
+
+<!-- BRAND 2 — GOTTI -->
+<section class="split reverse">
+  <div class="split-img">
+    <img src="https://images.unsplash.com/photo-1508296695146-257a814070b4?w=1200&q=80&fit=crop" alt="">
+  </div>
+  <div class="split-content">
+    <p class="split-eyebrow reveal">Brand — 道内初</p>
+    <h2 class="split-brand reveal" style="transition-delay:.05s">Gotti Switzerland</h2>
+    <p class="split-origin reveal" style="transition-delay:.1s">Switzerland</p>
+    <p class="split-desc reveal" style="transition-delay:.15s">
+      掛ける人のパーソナリティに寄り添うような<br>
+      静かな存在感を感じられるコレクション。<br><br>
+      ラグジュアリーライン "PRECIOUS OBJECTS" は<br>
+      日本の職人技によって一点一点丁寧に仕上げられた特別なシリーズ。<br>
+      Gold、Palladiumなどメッキ処理が施され、<br>
+      手触り、掛けた際の肌当たりも素晴らしく。<br><br>
+      ミニマルでありながら、圧倒的な存在感を楽しめる<br>
+      "身に纏うラグジュアリー"。
+    </p>
+  </div>
+</section>
+
+<!-- COLLECTION — HORIZONTAL SCROLL -->
+<section class="collection" id="collection">
+  <p class="col-header reveal">Collection</p>
+  <div class="col-track">
+    <div class="col-card">
+      <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=600&q=80&fit=crop" alt="">
+      <div class="col-info"><span class="col-brand">YUICHI TOYAMA.</span><div class="col-name">MDW / U-174</div><div class="col-model">54&#9633;19</div></div>
+    </div>
+    <div class="col-card">
+      <img src="https://images.unsplash.com/photo-1508296695146-257a814070b4?w=600&q=80&fit=crop" alt="">
+      <div class="col-info"><span class="col-brand">Gotti Switzerland</span><div class="col-name">PO-01</div><div class="col-model">48&#9633;19 — Precious Objects</div></div>
+    </div>
+    <div class="col-card">
+      <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80&fit=crop" alt="">
+      <div class="col-info"><span class="col-brand">Gotti Switzerland</span><div class="col-name">PO-02</div><div class="col-model">49&#9633;20 — Precious Objects</div></div>
+    </div>
+    <div class="col-card">
+      <img src="https://images.unsplash.com/photo-1604156788856-2d721adb8fc9?w=600&q=80&fit=crop" alt="">
+      <div class="col-info"><span class="col-brand">Selected</span><div class="col-name">Tortoiseshell Frame</div><div class="col-model">Classic Color</div></div>
+    </div>
+    <div class="col-card">
+      <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80&fit=crop" alt="">
+      <div class="col-info"><span class="col-brand">L'ombre 10</span><div class="col-name">Sunglasses</div><div class="col-model">Various</div></div>
+    </div>
+    <div class="col-card">
+      <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&q=80&fit=crop" alt="">
+      <div class="col-info"><span class="col-brand">Selected</span><div class="col-name">Round Frame</div><div class="col-model">Titanium</div></div>
+    </div>
+  </div>
+  <p class="col-hint reveal">← Scroll →</p>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-inner reveal">
+    <div class="srv">
+      <h4>Fitting</h4>
+      <p>顔の形とサイズに合わせて<br>最適なフレームをご提案。<br>試着は何本でも。</p>
+    </div>
+    <div class="srv">
+      <h4>Custom Lens</h4>
+      <p>度付き・伊達・サングラス。<br>用途に合わせた<br>レンズカスタマイズ。</p>
+    </div>
+    <div class="srv">
+      <h4>After Care</h4>
+      <p>フィッティング調整、<br>クリーニング、修理。<br>いつでもお持ちください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SISTER -->
+<section class="sister">
+  <div class="sister-inner reveal">
+    <p class="sister-text">
+      <strong>Peau de l'Ours</strong> — 同ビル併設のアパレルセレクト。 <a href="https://www.instagram.com/peau_de_lours/" target="_blank">@peau_de_lours</a>
+    </p>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <p class="visit-title reveal">Shop Info</p>
+  <div class="reveal" style="transition-delay:.1s">
+    <div class="vi"><span class="vi-l">Address</span><span class="vi-v">札幌市中央区南2条西10丁目1-4<br>第2サントービル 1号室</span></div>
+    <div class="vi"><span class="vi-l">Hours</span><span class="vi-v">12:00 — 19:00</span></div>
+    <div class="vi"><span class="vi-l">Closed</span><span class="vi-v">水曜日（第2週は水・木）</span></div>
+    <div class="vi"><span class="vi-l">Tel</span><span class="vi-v">011-271-1159</span></div>
+    <div class="vi"><span class="vi-l">Instagram</span><span class="vi-v"><a href="https://www.instagram.com/lombre10_sapporo/" target="_blank">@lombre10_sapporo</a></span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-dot"></div>
+    <span class="footer-nm">L'ombre 10</span>
+  </div>
+  <span class="footer-right">&copy; L'ombre 10 — Sapporo</span>
+</footer>
+
+<script>
+  const nav=document.getElementById('mainNav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

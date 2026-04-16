@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご提案資料 — PEAU DE L'OURS × L'ombre 10</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:    #FAFAF8;
+  --ink:   #1A1816;
+  --mid:   #7B7469;
+  --faint: #E8E4DA;
+  --warm:  #B8975A;
+  --dark:  #0E0E0E;
+}
+
+@page { size: A4; margin: 0; }
+html { font-size: 13px; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  width: 210mm;
+  margin: 0 auto;
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--faint);
+  margin-bottom: 1.4rem;
+}
+.header-left h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+.header-left h1 span {
+  display: block;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.6em;
+  font-style: normal;
+  color: var(--mid);
+  letter-spacing: 0.12em;
+  margin-top: 0.2rem;
+}
+.header-right {
+  text-align: right;
+  font-size: 0.68rem;
+  color: var(--mid);
+  line-height: 1.9;
+}
+.header-right strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* SECTION TITLES */
+.sec-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--warm);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+.sec-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+/* INTRO */
+.intro {
+  font-size: 0.76rem;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--mid);
+  margin-bottom: 1.5rem;
+}
+
+/* TWO COL DEMO */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.site-card {
+  border: 1px solid var(--faint);
+  padding: 1.2rem;
+}
+.site-card.dark {
+  background: var(--dark);
+  color: #E8E4DC;
+  border-color: #2A2825;
+}
+.site-card.dark .card-desc { color: #7A756C; }
+.card-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 0.5rem;
+}
+.site-card.dark .card-label { color: #7A756C; }
+.card-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+.card-desc {
+  font-size: 0.66rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--mid);
+  margin-bottom: 1rem;
+}
+.card-qr {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid var(--faint);
+}
+.site-card.dark .card-qr {
+  background: rgba(255,255,255,0.04);
+  border-color: #2A2825;
+}
+.card-qr-box {
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  border: 1px solid var(--faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.card-qr-box span {
+  font-size: 0.44rem;
+  color: var(--mid);
+  text-align: center;
+}
+.card-qr-text {
+  font-size: 0.58rem;
+  color: var(--mid);
+  line-height: 1.6;
+}
+.card-qr-text strong {
+  font-weight: 500;
+  color: var(--ink);
+  display: block;
+}
+.site-card.dark .card-qr-text strong { color: #E8E4DC; }
+
+/* WHY SECTION */
+.why-box {
+  background: var(--dark);
+  color: #E8E4DC;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.2rem;
+}
+.why-box .sec-num { color: var(--warm); }
+.why-box .sec-title { color: #E8E4DC; }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+.why-item {
+  padding: 0.8rem;
+  border: 1px solid #2A2825;
+}
+.why-item h4 {
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.why-item h4 span { font-size: 0.9rem; }
+.why-item p {
+  font-size: 0.56rem;
+  color: #7A756C;
+  line-height: 1.7;
+}
+
+/* WHAT I CAN DO */
+.can-do {
+  margin-bottom: 1.2rem;
+}
+.can-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+.can-item {
+  padding: 0.7rem 0.9rem;
+  border-left: 3px solid var(--warm);
+  background: rgba(184,151,90,0.04);
+}
+.can-item h4 {
+  font-size: 0.72rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.can-item p {
+  font-size: 0.56rem;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* MESSAGE */
+.message {
+  background: var(--dark);
+  color: #E8E4DC;
+  padding: 1.2rem 1.6rem;
+  margin-bottom: 1.2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: center;
+}
+.msg-label {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #7A756C;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.msg-body {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.74rem;
+  font-weight: 300;
+  line-height: 2.2;
+  color: rgba(232,228,220,0.7);
+}
+.msg-body strong {
+  font-weight: 400;
+  color: #E8E4DC;
+}
+
+/* FOOTER */
+.sheet-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--faint);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.sheet-footer-left {
+  font-size: 0.66rem;
+  line-height: 1.9;
+}
+.sheet-footer-left strong {
+  font-weight: 500;
+  font-size: 0.74rem;
+}
+.sheet-footer-right {
+  text-align: right;
+  font-size: 0.56rem;
+  color: var(--mid);
+  line-height: 1.8;
+}
+
+/* SCREEN RESPONSIVE */
+@media screen and (max-width: 800px) {
+  body { width: 100%; min-height: auto; padding: 1.5rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .can-grid { grid-template-columns: 1fr; }
+  .message { grid-template-columns: 1fr; }
+  .msg-label { writing-mode: horizontal-tb; }
+}
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <h1>
+      Peau de l'Ours × L'ombre 10
+      <span>サイト制作のご提案</span>
+    </h1>
+  </div>
+  <div class="header-right">
+    <strong>小野寺 鉄</strong><br>
+    株式会社メカニスタ<br>
+    tetsu@mekanista.jp
+  </div>
+</div>
+
+<!-- INTRO -->
+<p class="intro">
+  御店舗のコンセプトと世界観をそのままWebに落とし込んだサンプルサイトを制作しました。<br>
+  以下QRコードからスマホでご確認いただけます。
+</p>
+
+<!-- 01: DEMO SITES -->
+<p class="sec-num">01</p>
+<p class="sec-title">デモサイト</p>
+<div class="two-col">
+  <div class="site-card">
+    <p class="card-label">Apparel</p>
+    <h3 class="card-name">Peau de l'Ours</h3>
+    <p class="card-desc">19年の歴史とクラフト系セレクトの世界観を<br>余白と書体で表現。ブランド一覧・入荷情報・<br>コンセプト・アクセスを1ページに。</p>
+    <div class="card-qr">
+      <div class="card-qr-box"><span>QR</span></div>
+      <div class="card-qr-text">
+        <strong>アパレルサイトを見る</strong>
+        スマホで読み取り
+      </div>
+    </div>
+  </div>
+  <div class="site-card dark">
+    <p class="card-label">Eyewear</p>
+    <h3 class="card-name">L'ombre 10</h3>
+    <p class="card-desc">YUICHI TOYAMA.やGottiの静謐な世界観に合う<br>ダークトーン設計。フレームの美しさが際立つ<br>モノクロ基調のデザイン。</p>
+    <div class="card-qr">
+      <div class="card-qr-box"><span>QR</span></div>
+      <div class="card-qr-text">
+        <strong>アイウェアサイトを見る</strong>
+        スマホで読み取り
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02: WHY YOUR OWN SITE -->
+<div class="why-box">
+  <p class="sec-num">02</p>
+  <p class="sec-title">なぜ自社サイトを育てるべきか</p>
+  <div class="why-grid">
+    <div class="why-item">
+      <h4><span>🔍</span> AI検索時代の入口</h4>
+      <p>ChatGPTやGeminiで「札幌 セレクトショップ」と聞く人が急増。AI検索に載るサイト構造で制作します。</p>
+    </div>
+    <div class="why-item">
+      <h4><span>🌏</span> インバウンド対応</h4>
+      <p>英語版サイトも制作可能。札幌に来る海外のお客様が検索で御店舗を見つけられるようになります。</p>
+    </div>
+    <div class="why-item">
+      <h4><span>📈</span> SNSは流れる、サイトは残る</h4>
+      <p>Instagramの投稿は埋もれますが、サイトの記事は検索で見つかり続けます。資産として蓄積します。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 03: WHAT I CAN DO -->
+<div class="can-do">
+  <p class="sec-num">03</p>
+  <p class="sec-title">私にできること</p>
+  <div class="can-grid">
+    <div class="can-item">
+      <h4>写真撮影 + サイト制作を一人で</h4>
+      <p>商品写真・店舗写真の撮影からサイト制作まで一貫対応。外注の手間と追加コストが不要です。</p>
+    </div>
+    <div class="can-item">
+      <h4>投稿ツール開発中</h4>
+      <p>写真+テキストを入力するだけで公式サイトに掲載＋ブログ記事化。更新の手間をほぼゼロにします。</p>
+    </div>
+    <div class="can-item">
+      <h4>AI検索対策（AIO）</h4>
+      <p>AIが回答に引用するサイト構造で制作。「札幌 メンズ セレクトショップ」でAIが御店舗を推薦する状態を作ります。</p>
+    </div>
+    <div class="can-item">
+      <h4>EC運営の現場感</h4>
+      <p>自社でエアコンプレッサーの全国EC（年商数千万規模）を運営中。楽天・Amazon・自社ECの最前線で戦っています。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 04: MESSAGE -->
+<div class="message">
+  <span class="msg-label">Message</span>
+  <div class="msg-body">
+    <strong>「自分でECをもっと進めたい」という気持ちで、この仕事をしています。</strong><br>
+    自分自身がEC事業者として、サイトの力で売上が変わる経験を何度もしてきました。<br>
+    だからこそ、御店舗の世界観をWebで正しく伝えることに本気です。<br>
+    まずは一度、お話させてください。
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="sheet-footer">
+  <div class="sheet-footer-left">
+    <strong>小野寺 鉄（おのでら てつ）</strong><br>
+    株式会社メカニスタ 代表<br>
+    tetsu@mekanista.jp
+  </div>
+  <div class="sheet-footer-right">
+    デモサイトは実際の写真に差し替えるだけで<br>
+    そのまま本番公開できる状態です。<br>
+    <span style="color:var(--warm);font-weight:500;">お気軽にご連絡ください。</span>
+  </div>
+</div>
+
+</body>
+</html>
